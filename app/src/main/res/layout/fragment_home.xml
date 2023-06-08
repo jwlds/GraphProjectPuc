@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.HomeFragment" >
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="88dp"
+            android:layout_gravity="center"
+            android:src="@drawable/grafo_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="0dp"
+            android:textSize="24sp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Para onde você gostaria de ir?"
+            app:layout_constraintTop_toBottomOf="@+id/logo"
+            app:layout_constraintStart_toStartOf="@+id/logo"
+            app:layout_constraintEnd_toEndOf="@+id/logo" />
+
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutHomeBuilding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:layout_constraintEnd_toEndOf="@+id/titleView"
+            app:layout_constraintStart_toStartOf="@+id/titleView"
+            app:layout_constraintTop_toBottomOf="@+id/titleView">
+
+           <AutoCompleteTextView
+               android:id="@+id/selectHomeBuilding"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:inputType="none"
+               android:hint="Prédio de origem">
+
+           </AutoCompleteTextView>
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutDestinationBuilding"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            app:layout_constraintEnd_toEndOf="@+id/layoutHomeBuilding"
+            app:layout_constraintStart_toStartOf="@+id/layoutHomeBuilding"
+            app:layout_constraintTop_toBottomOf="@+id/layoutHomeBuilding">
+
+            <AutoCompleteTextView
+                android:id="@+id/selectDestinationBuilding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:hint="Prédio de destino">
+
+            </AutoCompleteTextView>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <Button
+            android:id="@+id/btnFind"
+            android:layout_width="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:height="60dp"
+            app:layout_goneMarginTop="60dp"
+            android:backgroundTint="@color/black"
+            android:text="Entrar"
+            app:layout_constraintTop_toBottomOf="@id/layoutDestinationBuilding"
+            app:layout_constraintStart_toStartOf="@id/layoutDestinationBuilding"
+            app:layout_constraintEnd_toEndOf="@id/layoutDestinationBuilding"
+
+            />
+
+        <TextView
+            android:id="@+id/resultText"
+            tools:text="H15 -> H14 -> H10 -> H09."
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="@+id/btnFind"
+            app:layout_constraintEnd_toEndOf="@+id/btnFind"
+            app:layout_constraintTop_toBottomOf="@+id/btnFind"
+            />
+
+
+        <ImageButton
+            android:id="@+id/btnViewMap"
+            android:layout_margin="16dp"
+            android:layout_width="64dp"
+            android:backgroundTint="@color/black"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/baseline_map_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</ScrollView>

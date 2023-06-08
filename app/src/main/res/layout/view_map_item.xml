@@ -1,0 +1,31 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/roundRemove"
+        android:layout_width="112dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:scaleType="centerCrop"
+        android:src="@drawable/round_remove_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <ImageView
+
+        android:layout_width="400dp"
+        android:layout_height="600dp"
+        android:src="@drawable/map_pucc_campus_1"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/roundRemove"
+        app:layout_constraintEnd_toEndOf="@+id/roundRemove"
+        app:layout_constraintTop_toBottomOf="@+id/roundRemove"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
