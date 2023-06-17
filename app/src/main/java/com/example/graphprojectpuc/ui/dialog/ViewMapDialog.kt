@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.example.graphprojectpuc.databinding.ViewMapItemBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
+// Classe que herda de "BottomSheetDialogFragment" e infla o layout "view_map_item" para exibir o mapa da PUC
 class ViewMapDialog() : BottomSheetDialogFragment() {
 
     private var _binding: ViewMapItemBinding? = null

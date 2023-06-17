@@ -6,6 +6,8 @@ import com.example.graphprojectpuc.model.Building
 object Utils {
 
 
+
+    
     fun createMatrix(buildings: List<Building>): Array<IntArray> {
         val size = buildings.size
         val matrix = Array(size) { IntArray(size) }
@@ -28,10 +30,6 @@ object Utils {
         }
 
         return matrix
-    }
-
-    fun formatResult(path: String, time: Int): String {
-        return "O caminho mais rápido é $path e o tempo estimado é $time min."
     }
 
      fun createBuildings() {

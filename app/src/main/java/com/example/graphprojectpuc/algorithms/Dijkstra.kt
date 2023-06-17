@@ -7,6 +7,7 @@ class Dijkstra(private val graph: Array<IntArray>) {
 
     private val numVertices: Int = graph.size
 
+    // Função para encontrar o caminho mais curto usando o algoritmo de Dijkstra
     fun findShortestPath(source: Int, destination: Int) : PathResult {
         val distances = IntArray(numVertices) { Int.MAX_VALUE }
         val visited = BooleanArray(numVertices)
@@ -28,14 +29,14 @@ class Dijkstra(private val graph: Array<IntArray>) {
                 }
             }
         }
-       // val pathString = path.joinToString(" -> ")
-
         return PathResult(
             path = getPath(source, destination, previous),
             estimatedTime = distances[destination]
         )
     }
 
+
+    // Função auxiliar para encontrar o vértice não visitado com a menor distância
     private fun getMinDistanceVertex(distances: IntArray, visited: BooleanArray): Int {
         var minDistance = Int.MAX_VALUE
         var minDistanceVertex = -1
@@ -50,6 +51,8 @@ class Dijkstra(private val graph: Array<IntArray>) {
         return minDistanceVertex
     }
 
+
+    // Função auxiliar para obter o caminho mais curto a partir dos vértices anteriores
     private fun getPath(source: Int, destination: Int, previous: IntArray): List<Int> {
         val path = LinkedList<Int>()
         var current = destination

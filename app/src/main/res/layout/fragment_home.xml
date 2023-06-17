@@ -89,7 +89,7 @@
             android:height="60dp"
             app:layout_goneMarginTop="60dp"
             android:backgroundTint="@color/black"
-            android:text="Entrar"
+            android:text="Encontrar"
             app:layout_constraintTop_toBottomOf="@id/layoutDestinationBuilding"
             app:layout_constraintStart_toStartOf="@id/layoutDestinationBuilding"
             app:layout_constraintEnd_toEndOf="@id/layoutDestinationBuilding"
@@ -97,16 +97,29 @@
             />
 
         <TextView
-            android:id="@+id/resultText"
+            android:id="@+id/resultPathText"
             tools:text="H15 -> H14 -> H10 -> H09."
             android:layout_width="0dp"
-            android:gravity="center"
-            android:textSize="16sp"
+            app:layout_goneMarginTop="50dp"
+            android:textSize="18sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="@+id/btnFind"
             app:layout_constraintEnd_toEndOf="@+id/btnFind"
             app:layout_constraintTop_toBottomOf="@+id/btnFind"
+            />
+
+        <TextView
+            android:id="@+id/resultTimeText"
+            tools:text="40 min"
+            android:layout_width="0dp"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/resultPathText"
+            app:layout_constraintEnd_toEndOf="@+id/resultPathText"
+            app:layout_constraintTop_toBottomOf="@+id/resultPathText"
             />
 
 

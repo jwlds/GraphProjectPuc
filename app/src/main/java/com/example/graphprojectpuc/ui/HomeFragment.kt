@@ -1,5 +1,6 @@
 package com.example.graphprojectpuc.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,11 +10,9 @@ import android.widget.ArrayAdapter
 import androidx.lifecycle.ViewModelProvider
 import com.example.graphprojectpuc.R
 import com.example.graphprojectpuc.algorithms.Dijkstra
-import com.example.graphprojectpuc.database.FirebaseHelper
 import com.example.graphprojectpuc.databinding.FragmentHomeBinding
 import com.example.graphprojectpuc.ui.dialog.ViewMapDialog
 import com.example.graphprojectpuc.utils.Utils
-import com.example.graphprojectpuc.utils.Utils.formatResult
 import com.example.graphprojectpuc.viewmodel.BuildingViewModel
 
 
@@ -38,18 +37,22 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Função para criar os prédios da puc campinas
+
+       // Função para criar os prédios da PUC Campinas
        // Utils.createBuildings()
 
-
+        // Inicialização do ViewModel para obter a lista de prédios
         val buildingViewModel = ViewModelProvider(this).get(BuildingViewModel::class.java)
         buildingViewModel.buildingList.observe(viewLifecycleOwner) { buildings ->
 
 
+            // Criação do mapa com os nomes do prédios
             val buildingNames = buildings.map { it.name }
 
+            // Criação do mapa de prédios usando o nome como chave e o índice como valor
             buildingMap = buildings.associate { it.name to it.index } as Map<String, Int>
 
+            // Criação de um adapter para exibir os nomes dos prédios em um AutoCompleteTextView
             val adapter = ArrayAdapter(
                 requireContext(),
                 R.layout.drop_down_item,
@@ -59,6 +62,7 @@ class HomeFragment : Fragment() {
             binding.selectDestinationBuilding.setAdapter(adapter)
 
 
+            // Criação do objeto Dijkstra com a matriz
             dijkstra = Dijkstra(Utils.createMatrix(buildings))
 
 
@@ -67,20 +71,14 @@ class HomeFragment : Fragment() {
 
         binding.btnFind.setOnClickListener {
             if (isValid()) {
-                val getIndexSelectHomeBuilding =
-                    buildingMap[binding.selectHomeBuilding.text.trim().toString()]
-
-                val getIndexSelectDestinationBuilding =
-                    buildingMap[binding.selectDestinationBuilding.text.trim().toString()]
-
+                val originBuilding = binding.selectHomeBuilding.text.trim().toString()
+                val destinationBuilding = binding.selectDestinationBuilding.text.trim().toString()
                 val dijkstraResult = dijkstra.findShortestPath(
-                    source = getIndexSelectHomeBuilding!!.toInt(),
-                    destination = getIndexSelectDestinationBuilding!!.toInt()
+                    source = buildingMap[originBuilding]!!.toInt(),
+                    destination =   buildingMap[destinationBuilding]!!.toInt()
                 )
-
-                binding.resultText.text = formatResult(
-                    path = getBuildingNamesByIds(dijkstraResult.path),
-                    time = dijkstraResult.estimatedTime)
+                binding.resultPathText.text = "O caminho mais rápido entre o $originBuilding e $destinationBuilding:\n\n${getBuildingNamesByIds(dijkstraResult.path)}."
+                binding.resultTimeText.text = "Tempo estimado: ${dijkstraResult.estimatedTime} min."
             }
         }
 
@@ -93,12 +91,12 @@ class HomeFragment : Fragment() {
     private fun isValid(): Boolean {
         val selectedHomeBuilding = binding.selectHomeBuilding.text.trim().toString()
         val selectedDestinationBuilding = binding.selectDestinationBuilding.text.trim().toString()
-        if(selectedHomeBuilding.isEmpty()){
+        if (selectedHomeBuilding.isEmpty()) {
             binding.selectHomeBuilding.error = "Escolha um prédio"
             binding.selectHomeBuilding.requestFocus()
             return false
         }
-        if(selectedDestinationBuilding.isEmpty()) {
+        if (selectedDestinationBuilding.isEmpty()) {
             binding.selectDestinationBuilding.error = "Escolha um prédio"
             binding.selectDestinationBuilding.requestFocus()
             return false
@@ -112,8 +110,6 @@ class HomeFragment : Fragment() {
         }
         return buildingNames.joinToString(" -> ")
     }
-
-
 
     private fun showDialogViewMap() {
         val dialog = ViewMapDialog()
